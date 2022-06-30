@@ -21,7 +21,7 @@ function App() {
     return (
         <div>
             <nav className="navbar navbar-expand navbar-dark bg-dark">
-                <a href="/restaurants" className="navbar-brand">
+                <a href="/restaurants" className="navbar-brand ms-3">
                     Restaurant Reviews
                 </a>
                 <div className="navbar-nav mr-auto">
@@ -46,10 +46,12 @@ function App() {
 
             <div className="container mt-3">
                 <Routes>
-                    <Route exact path={["/", "/restaurants"]} component={RestaurantsList} />
-                    <Route path="/restaurants/:id/review" render={(props) => <AddReview {...props} user={user} />} />
-                    <Route path="/restaurants/:id" render={(props) => <Restaurant {...props} user={user} />} />
-                    <Route path="/login" render={(props) => <Login {...props} login={login} />} />
+                    <Route path="/" element={<RestaurantsList />}>
+                        <Route exact path="/restaurants" element={<RestaurantsList />} />
+                    </Route>
+                    <Route path="/restaurants/:id/review" element={<AddReview user={user} />} />
+                    <Route path="/restaurants/:id" element={<Restaurant user={user} />} />
+                    <Route path="/login" element={<Login login={login} />} />
                 </Routes>
             </div>
         </div>
